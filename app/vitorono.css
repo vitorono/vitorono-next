@@ -140,7 +140,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   width: 664px;
-  padding: 4px 16px;
+  padding: 4px 8px;
   display: flex;
 }
 
@@ -305,6 +305,8 @@ body {
   width: 600px;
   height: 400px;
   display: none;
+  background: #000;
+  overflow: hidden;
 }
 
 .modal_close {
@@ -318,18 +320,17 @@ body {
 }
 
 .about_text {
-  flex: none;
+  flex: 1;
   overflow-y: auto;
 }
 
 .about_modal {
   flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  gap: 0px;
-  width: 720px;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 680px;
   height: 600px;
-  padding: 16px 64px;
+  padding: 32px 32px;
   display: flex;
 }
 
@@ -417,6 +418,7 @@ body {
   .mobile-item-wrapper {
     flex: 1;
     width: 100%;
+    gap: 32px;
     display: flex;
   }
 }

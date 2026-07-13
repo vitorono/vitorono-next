@@ -3,15 +3,20 @@ import Nav from '@/components/Nav';
 import ProjectList from '@/components/ProjectList';
 import ModalManager from '@/components/ModalManager';
 import type { Project } from '@/data/projects';
-import { getProjects } from '@/sanity/queries';
+import { getProjects, getSiteContent } from '@/sanity/queries';
 
 export default async function Home() {
-  // Fetches at build time (SSG) — add `revalidate` or `force-dynamic` to change
   let projects: Project[] = [];
+  let homeText = 'Independent visual developer. Working worldwide. Turning brand identity into websites. direction, design, build.';
+  let aboutText: string | undefined;
+
   try {
-    projects = await getProjects();
+    const [p, content] = await Promise.all([getProjects(), getSiteContent()]);
+    projects = p;
+    if (content.homeText) homeText = content.homeText;
+    if (content.aboutText) aboutText = content.aboutText;
   } catch {
-    // Sanity not yet configured — runs fine with an empty project list
+    // Sanity not configured — falls back to hardcoded defaults
   }
 
   return (
@@ -30,19 +35,14 @@ export default async function Home() {
           />
         </section>
         <section className="home_bottom-row">
-          {/* Desktop list */}
           <ProjectList projects={projects} />
-          {/* Mobile list */}
           <ProjectList projects={projects} mobile />
           <div className="w-layout-vflex home_text-wrapper">
-            <div className="text">
-              Independent visual developer. Working worldwide. Turning brand identity into websites. direction, design, build.
-            </div>
+            <div className="text">{homeText}</div>
           </div>
         </section>
 
-        {/* All modals live here — client component handles GSAP + state */}
-        <ModalManager projects={projects} />
+        <ModalManager projects={projects} aboutText={aboutText} />
       </div>
     </>
   );

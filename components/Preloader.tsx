@@ -10,11 +10,9 @@ export default function Preloader() {
 
     let animInstance: { destroy: () => void } | null = null;
 
-    // Dynamically import lottie-web so it only runs client-side
     import('lottie-web').then((lottieModule) => {
       const lottie = lottieModule.default;
       if (!lottieContainerRef.current) return;
-
       animInstance = lottie.loadAnimation({
         container: lottieContainerRef.current,
         renderer: 'svg',
@@ -26,7 +24,11 @@ export default function Preloader() {
 
     const phase1 = document.getElementById('phase1');
     const phase2 = document.getElementById('phase2');
-    const fill = document.getElementById('progress-fill');
+    const fill = document.getElementById('progress-fill') as HTMLElement | null;
+    const video = document.querySelector<HTMLVideoElement>('#phase2 video');
+
+    let rafId: number;
+    let maxTimeoutId: ReturnType<typeof setTimeout>;
 
     function easeLoader(t: number): number {
       if (t < 0.4) return (t / 0.4) * 0.55;
@@ -34,26 +36,66 @@ export default function Preloader() {
       return 0.82 + ((t - 0.85) / 0.15) * 0.18;
     }
 
-    const duration = 5000;
-    let startTime: number | null = null;
-    let rafId: number;
-
-    function animate(ts: number) {
-      if (!startTime) startTime = ts;
-      const t = Math.min((ts - startTime) / duration, 1);
-      if (fill) fill.style.width = `${easeLoader(t) * 100}%`;
-      if (t < 1) {
-        rafId = requestAnimationFrame(animate);
-      } else {
+    function transitionToPhase2() {
+      cancelAnimationFrame(rafId);
+      clearTimeout(maxTimeoutId);
+      if (fill) {
+        fill.style.transition = 'width 0.3s ease';
+        fill.style.width = '100%';
+      }
+      setTimeout(() => {
         phase1?.classList.add('out');
         phase2?.classList.add('in');
+      }, 350);
+    }
+
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if (isIOS) {
+      // iOS ignores preload — fake animation as fallback
+      const duration = 6000;
+      let startTime: number | null = null;
+      function animate(ts: number) {
+        if (!startTime) startTime = ts;
+        const t = Math.min((ts - startTime) / duration, 1);
+        if (fill) fill.style.width = `${easeLoader(t) * 100}%`;
+        if (t < 1) {
+          rafId = requestAnimationFrame(animate);
+        } else {
+          transitionToPhase2();
+        }
+      }
+      rafId = requestAnimationFrame(animate);
+    } else {
+      // Android / Desktop: drive bar from real buffering progress
+      // Both conditions must be true before transitioning: video ready + 3s minimum
+      let canPlayReady = false;
+      let minTimeReady = false;
+
+      function tryTransition() {
+        if (canPlayReady && minTimeReady) transitionToPhase2();
+      }
+
+      setTimeout(() => { minTimeReady = true; tryTransition(); }, 3000);
+      maxTimeoutId = setTimeout(transitionToPhase2, 8000);
+
+      if (video) {
+        video.addEventListener('progress', () => {
+          if (!video.duration || !video.buffered.length) return;
+          const pct = video.buffered.end(video.buffered.length - 1) / video.duration;
+          if (fill) fill.style.width = `${Math.min(pct * 100, 92)}%`;
+        });
+
+        video.addEventListener('canplay', () => {
+          canPlayReady = true;
+          tryTransition();
+        }, { once: true });
+
+        if (video.readyState >= 3) { canPlayReady = true; tryTransition(); }
       }
     }
 
-    rafId = requestAnimationFrame(animate);
-
-    // Phase 2 video
-    const video = document.querySelector<HTMLVideoElement>('#phase2 video');
+    // Start video playback (both paths)
     if (video) {
       const playPromise = video.play();
       if (playPromise) {
@@ -65,32 +107,36 @@ export default function Preloader() {
       }
     }
 
+    // Click to enter — only enabled after "CLICK ANYWHERE" finishes fading in
+    const phase2Content = document.getElementById('phase2-content');
     function handleEnter() {
       document.getElementById('preloader')?.remove();
       document.body.style.overflow = '';
       document.body.classList.remove('is-loading');
     }
-
-    phase2?.addEventListener('click', handleEnter);
+    function enableClick() {
+      phase2?.classList.add('ready');
+      phase2?.addEventListener('click', handleEnter);
+    }
+    phase2Content?.addEventListener('transitionend', enableClick, { once: true });
 
     return () => {
       cancelAnimationFrame(rafId);
+      clearTimeout(maxTimeoutId);
       animInstance?.destroy();
+      phase2Content?.removeEventListener('transitionend', enableClick);
       phase2?.removeEventListener('click', handleEnter);
     };
   }, []);
 
   return (
     <div id="preloader">
-      {/* Phase 1: loading bar */}
       <div id="phase1">
         <div ref={lottieContainerRef} style={{ width: 280, height: 280 }} />
         <div id="progress-wrapper">
           <div id="progress-fill" />
         </div>
       </div>
-
-      {/* Phase 2: click to enter */}
       <div id="phase2">
         <video autoPlay muted loop playsInline preload="auto">
           <source

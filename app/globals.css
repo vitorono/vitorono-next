@@ -127,17 +127,21 @@ body.is-loading { overflow: hidden; }
   height: 2px;
   background: rgba(255, 0, 0, 0.4);
 }
-#progress-fill { height: 100%; width: 0%; background: #ff0000; }
+#progress-fill { height: 100%; width: 0%; background: #ff0000; transition: width 0.5s ease-in; }
+
+@media screen and (max-width: 991px) {
+  #progress-wrapper { width: 80%; }
+}
 
 #phase2 {
   position: absolute;
   inset: 0;
   opacity: 0;
-  cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: opacity 1.2s ease;
 }
 #phase2.in { opacity: 1; }
+#phase2.ready { cursor: pointer; }
 
 #phase2-content {
   opacity: 0;

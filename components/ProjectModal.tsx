@@ -1,27 +1,37 @@
 'use client';
 
-import { useModalStore } from '@/store/modalStore';
+import { useEffect, useRef } from 'react';
 import type { Project } from '@/data/projects';
 
 interface Props {
   project: Project;
+  isActive: boolean;
+  preload: 'auto' | 'metadata';
 }
 
-export default function ProjectModal({ project }: Props) {
-  const close = useModalStore((s) => s.close);
+export default function ProjectModal({ project, isActive, preload }: Props) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const id = `project-${project.slug}`;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (isActive) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isActive]);
 
   return (
     <div data-modal={id} className="modal_wrapper is-project">
-      <div className="modal_close" onClick={() => close(id)}>
-        <img src="/images/close-icon_black.svg" loading="lazy" alt="Close" />
-      </div>
       {project.previewVideo ? (
         <video
-          autoPlay
+          ref={videoRef}
           muted
           loop
           playsInline
+          preload={preload}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         >
           <source src={project.previewVideo} />

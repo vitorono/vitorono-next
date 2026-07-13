@@ -9,11 +9,7 @@ interface Props {
 }
 
 export default function ProjectList({ projects, mobile = false }: Props) {
-  const { open, close, isOpen } = useModalStore();
-
-  function toggle(id: string) {
-    isOpen(id) ? close(id) : open(id);
-  }
+  const { open, close } = useModalStore();
 
   return (
     <div className={`home_item-list${mobile ? ' is-mobile' : ''}`}>
@@ -27,7 +23,9 @@ export default function ProjectList({ projects, mobile = false }: Props) {
               className={`home_item-row${mobile ? ' is-mobile' : ''} item_row`}
               onMouseEnter={() => !mobile && open(id)}
               onMouseLeave={() => !mobile && close(id)}
-              onClick={() => mobile && toggle(id)}
+              onClick={() => {
+                if (p.url) window.open(p.url, '_blank', 'noopener,noreferrer');
+              }}
             >
               {mobile ? (
                 <div className="mobile-item-wrapper">

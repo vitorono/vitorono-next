@@ -53,7 +53,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-US" className={geistMono.variable}>
+    <html lang="en-US" className={geistMono.variable} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -77,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           imageSizes="100vw"
         />
       </head>
-      <body>{children}</body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
