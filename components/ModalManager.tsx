@@ -16,7 +16,7 @@ export default function ModalManager({ projects, aboutText }: Props) {
   const { openModals } = useModalStore();
   const highestZRef = useRef(100);
   const prevOpenRef = useRef<Set<string>>(new Set());
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     setIsMobile(window.matchMedia('(max-width: 991px)').matches);
@@ -91,14 +91,21 @@ export default function ModalManager({ projects, aboutText }: Props) {
     <>
       {openModals.has('contact') && <ContactModal />}
       {openModals.has('about') && <AboutModal aboutText={aboutText} />}
-      {projects.map(project => (
-        <ProjectModal
-          key={project.slug}
-          project={project}
-          isActive={openModals.has(`project-${project.slug}`)}
-          preload={isMobile ? 'metadata' : 'auto'}
-        />
-      ))}
+      {/*
+        These preview modals only ever open via desktop hover (see ProjectList,
+        which guards `open()` with `!mobile`); mobile taps navigate straight to
+        the project URL instead. Don't mount the <video> elements at all until
+        we've confirmed we're not on mobile, or every project's video starts
+        downloading on phones with no way to ever see it.
+      */}
+      {isMobile === false &&
+        projects.map(project => (
+          <ProjectModal
+            key={project.slug}
+            project={project}
+            isActive={openModals.has(`project-${project.slug}`)}
+          />
+        ))}
     </>
   );
 }

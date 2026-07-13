@@ -47,7 +47,7 @@ O desenvolvedor é um mestre calígrafo dos nossos tempos. Ele opera dentro de u
             loop
             muted
             playsInline
-            style={{ backgroundImage: 'url("/videos/Vitor-Ono---About_poster.0000000.jpg")' }}
+            poster="/videos/Vitor-Ono---About_poster.0000000.jpg"
             data-object-fit="cover"
           >
             <source src="/videos/Vitor-Ono---About_mp4.mp4" />

@@ -6,10 +6,9 @@ import type { Project } from '@/data/projects';
 interface Props {
   project: Project;
   isActive: boolean;
-  preload: 'auto' | 'metadata';
 }
 
-export default function ProjectModal({ project, isActive, preload }: Props) {
+export default function ProjectModal({ project, isActive }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const id = `project-${project.slug}`;
 
@@ -31,7 +30,7 @@ export default function ProjectModal({ project, isActive, preload }: Props) {
           muted
           loop
           playsInline
-          preload={preload}
+          preload="auto"
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         >
           <source src={project.previewVideo} />
