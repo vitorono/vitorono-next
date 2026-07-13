@@ -5,6 +5,8 @@ import ModalManager from '@/components/ModalManager';
 import type { Project } from '@/data/projects';
 import { getProjects, getSiteContent } from '@/sanity/queries';
 
+export const revalidate = 60;
+
 export default async function Home() {
   let projects: Project[] = [];
   let homeText = 'Independent visual developer. Working worldwide. Turning brand identity into websites. direction, design, build.';
