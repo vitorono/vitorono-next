@@ -22,14 +22,12 @@ export const metadata: Metadata = {
     title: 'vitor ono ◎ independent visual developer',
     description:
       'Independent visual developer based in Brazil. Working worldwide. Turning brand identity into websites — direction, design, build.',
-    images: [{ url: 'https://vitorono.com/images/graphism.webp' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'vitor ono ◎ independent visual developer',
     description:
       'Independent visual developer based in Brazil. Working worldwide. Turning brand identity into websites — direction, design, build.',
-    images: ['https://vitorono.com/images/graphism.webp'],
   },
   icons: {
     icon: [
