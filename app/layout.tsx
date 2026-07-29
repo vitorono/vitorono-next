@@ -11,23 +11,23 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'vitor ono ◎ independent visual developer',
+  title: 'vitor ono ◎ independent web designer & visual developer',
   description:
-    'Independent visual developer based in Brazil. Working worldwide. Turning brand identity into websites — direction, design, build.',
+    'independent visual website designer and developer. working worldwide. turning brand identity into websites. direction, design, build.',
   metadataBase: new URL('https://vitorono.com'),
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: 'https://vitorono.com/',
-    title: 'vitor ono ◎ independent visual developer',
+    title: 'vitor ono ◎ independent web designer & visual developer',
     description:
-      'Independent visual developer based in Brazil. Working worldwide. Turning brand identity into websites — direction, design, build.',
+      'independent visual website designer and developer. working worldwide. turning brand identity into websites. direction, design, build.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'vitor ono ◎ independent visual developer',
+    title: 'vitor ono ◎ independent web designer & visual developer',
     description:
-      'Independent visual developer based in Brazil. Working worldwide. Turning brand identity into websites — direction, design, build.',
+      'independent visual website designer and developer. working worldwide. turning brand identity into websites. direction, design, build.',
   },
   icons: {
     icon: [
