@@ -20,17 +20,20 @@ export default function Nav() {
           onClick={() => toggle('about')}
           className={`nav_link is-about w-button${isOpen('about') ? ' is-active' : ''}`}
         >
-          About
+          about
         </button>
         <button
           onClick={() => toggle('contact')}
           className={`nav_link is-contact w-button${isOpen('contact') ? ' is-active' : ''}`}
         >
-          Contact
+          contact
         </button>
       </div>
       <div className="nav_link-wrapper">
-        <span className="nav_link w-button">Vitor Ono</span>
+        <a href="mailto:work@vitorono.com" className="nav_link nav_link-email w-button">
+          <span className="nav_link-text-default">vitor ono</span>
+          <span className="nav_link-text-hover">work@vitorono.com</span>
+        </a>
       </div>
     </nav>
   );

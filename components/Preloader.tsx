@@ -132,7 +132,7 @@ export default function Preloader() {
   return (
     <div id="preloader">
       <div id="phase1">
-        <div ref={lottieContainerRef} style={{ width: 280, height: 280 }} />
+        <div ref={lottieContainerRef} id="preloader-lottie" />
         <div id="progress-wrapper">
           <div id="progress-fill" />
         </div>

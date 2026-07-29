@@ -26,7 +26,7 @@ body {
   z-index: 100;
   justify-content: space-between;
   width: 100%;
-  padding: 16px 40px;
+  padding: 16px 24px;
   display: flex;
   position: relative;
 }
@@ -52,6 +52,22 @@ body {
 .nav_link:where(.w-variant-afe86249-7434-134b-65a3-de39f9c12b8e), .nav_link:hover, .nav_link.is-contact.is-active, .nav_link.is-about.is-active {
   background-color: var(--base-color-brand--black);
   color: var(--base-color-brand--white);
+}
+
+.nav_link-email {
+  padding: 0 8px 0 40px;
+}
+
+.nav_link-email .nav_link-text-hover {
+  display: none;
+}
+
+.nav_link-email:hover .nav_link-text-default {
+  display: none;
+}
+
+.nav_link-email:hover .nav_link-text-hover {
+  display: inline;
 }
 
 .page-wrapper {

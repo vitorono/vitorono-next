@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity';
 import { structureTool } from 'sanity/structure';
 import { projectSchema } from './sanity/schema/project';
 import { siteContentSchema } from './sanity/schema/siteContent';
+import { proposalSchema } from './sanity/schema/proposal';
 
 export default defineConfig({
   name: 'vitorono',
@@ -16,6 +17,7 @@ export default defineConfig({
           .title('Content')
           .items([
             S.documentTypeListItem('project').title('Projects'),
+            S.documentTypeListItem('proposal').title('Proposals'),
             S.listItem()
               .title('Site Texts')
               .child(
@@ -27,6 +29,6 @@ export default defineConfig({
     }),
   ],
   schema: {
-    types: [projectSchema, siteContentSchema],
+    types: [projectSchema, siteContentSchema, proposalSchema],
   },
 });

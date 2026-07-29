@@ -121,6 +121,16 @@ body.is-loading { overflow: hidden; }
 }
 #phase1.out { opacity: 0; pointer-events: none; }
 
+#preloader-lottie {
+  width: 280px;
+  height: 280px;
+}
+#preloader-lottie svg { width: 100%; height: 100%; }
+
+@media screen and (max-width: 991px) {
+  #preloader-lottie { width: 140px; height: 140px; }
+}
+
 #progress-wrapper {
   margin-top: 32px;
   width: min(480px, 90vw);
