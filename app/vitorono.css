@@ -451,6 +451,23 @@ body {
     flex-flow: column;
   }
 
+  .nav_link, .nav_link-email {
+    padding: 4px 8px;
+  }
+
+  .nav_link:hover, .nav_link-email:hover {
+    background-color: var(--base-color-brand--white);
+    color: var(--base-color-brand--black);
+  }
+
+  .nav_link-email:hover .nav_link-text-default {
+    display: inline;
+  }
+
+  .nav_link-email:hover .nav_link-text-hover {
+    display: none;
+  }
+
   .page-wrapper {
     height: 100dvh;
     min-height: 100dvh;

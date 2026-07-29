@@ -28,6 +28,14 @@ export default function Nav() {
         >
           contact
         </button>
+        <a
+          href="https://www.linkedin.com/in/vitor-ono/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nav_link is-linkedin w-button"
+        >
+          linkedin
+        </a>
       </div>
       <div className="nav_link-wrapper">
         <a href="mailto:work@vitorono.com" className="nav_link nav_link-email w-button">
