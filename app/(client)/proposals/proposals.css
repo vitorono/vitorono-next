@@ -1,3 +1,8 @@
+html,
+body {
+  background-color: #000;
+}
+
 .proposals_root {
   min-height: 100vh;
   background-color: #000;
@@ -5,6 +10,11 @@
   font-family: var(--font-geist-mono), monospace;
   font-size: 14px;
   line-height: 20px;
+}
+
+.proposals_root ::selection {
+  background-color: red;
+  color: #fff;
 }
 
 /* ─── Password gate ─────────────────────────────────────── */
@@ -67,45 +77,84 @@
 /* ─── Proposal document ─────────────────────────────────── */
 
 .proposal_page {
-  max-width: 1100px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 40px 24px 120px;
+  padding: 40px 0px 120px;
+  text-align: justify;
 }
 
 .proposal_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 64px;
+}
+
+.proposal_logo {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.proposal_symbol {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
 .proposal_title-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding-bottom: 80px;
+  padding-bottom: 64px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .proposal_kicker {
-  opacity: 0.7;
+  color: #fff;
 }
 
 .proposal_body {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+}
+
+.proposal_body > * + * {
+  margin-top: 64px;
+}
+
+.proposal_body > .proposal_row--section-gap {
+  margin-top: 64px;
+}
+
+.proposal_body > .proposal_row--tight-gap {
+  margin-top: 16px;
+}
+
+.proposal_body--closing {
+  margin-top: 64px;
 }
 
 .proposal_row {
   display: grid;
-  grid-template-columns: minmax(120px, 1fr) 2fr;
+  grid-template-columns: minmax(120px, 1fr) 64%;
   gap: 24px;
+}
+
+.proposal_meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .proposal_value {
   white-space: pre-line;
+}
+
+.proposal_label--caps {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .proposal_scope-list {
@@ -122,13 +171,92 @@
   align-items: flex-start;
 }
 
+.proposal_link-list--right {
+  align-items: flex-end;
+}
+
 .proposal_bracket-link {
   color: #fff;
   text-decoration: underline;
 }
 
+.proposal_bracket-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  padding: 0;
+  margin: 0;
+}
+
+.proposal_bracket-button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.proposal_tree-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.proposal_tree-toggle:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.proposal_tree-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.proposal_tree {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+  margin: 0;
+  padding-left: 8px;
+  color: #fff;
+}
+
+.proposal_tree-connector {
+  color: #ccc;
+}
+
+.proposal_scope-note {
+  white-space: pre-line;
+  padding-top: 24px;
+}
+
+.proposal_process-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.proposal_process-title {
+  padding-bottom: 4px;
+}
+
+.proposal_investment-amount {
+  text-decoration: underline;
+  padding-bottom: 16px;
+}
+
 .proposal_section {
-  margin-top: 80px;
+  width: 64%;
+  margin-top: 64px;
 }
 
 .proposal_section-title {
@@ -139,11 +267,6 @@
 
 .proposal_section-body {
   white-space: pre-line;
-}
-
-.proposal_footer {
-  margin-top: 100px;
-  opacity: 0.6;
 }
 
 /* ─── Proposals index ───────────────────────────────────── */
@@ -168,8 +291,17 @@
 }
 
 @media (max-width: 640px) {
+  .proposal_page {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .proposal_row {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 32px;
+  }
+
+  .proposal_section {
+    width: 100%;
   }
 }

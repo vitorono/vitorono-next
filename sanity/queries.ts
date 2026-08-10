@@ -43,15 +43,19 @@ const PROPOSALS_LIST_QUERY = `*[_type == "proposal"] | order(date desc) {
 const PROPOSAL_QUERY = `*[_type == "proposal" && slug.current == $slug][0] {
   "slug": slug.current,
   projectName,
+  clientCompany,
   clientName,
   date,
   projectDescription,
-  approach,
+  sitemap,
   scope,
-  myWork,
-  investment,
+  process,
+  afterLaunchNote,
+  "myWork": myWork[]->{ name, url },
+  investmentValue,
+  "investmentDescription": investment,
   timeline,
-  scheduleUrl
+  acceptingTerms
 }`;
 
 // The only query in the codebase allowed to touch `password`.
