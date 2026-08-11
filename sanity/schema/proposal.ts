@@ -172,6 +172,12 @@ export const proposalSchema = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: 'carePlansUrl',
+      title: 'Care Plans URL',
+      description: 'Optional — if set, adds a "view care plans" link to the after-launch row.',
+      type: 'url',
+    }),
+    defineField({
       name: 'myWork',
       title: 'My Work',
       description: 'Select projects from the Projects collection to show as examples.',

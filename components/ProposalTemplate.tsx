@@ -2,8 +2,6 @@ import type { Proposal } from '@/data/proposals';
 import { PROPOSAL_STRINGS } from '@/lib/proposalStrings';
 import ScopeTree from './ScopeTree';
 
-const CARE_PLANS_URL = '#';
-
 function BracketLink({
   href,
   external,
@@ -93,9 +91,11 @@ export default function ProposalTemplate({ proposal }: { proposal: Proposal }) {
           <div className="proposal_label">{t.afterLaunch}</div>
           <div className="proposal_value proposal_link-list proposal_link-list--right">
             <div>{afterLaunchNote}</div>
-            <BracketLink href={CARE_PLANS_URL} external>
-              {t.viewCarePlans}
-            </BracketLink>
+            {proposal.carePlansUrl && (
+              <BracketLink href={proposal.carePlansUrl} external>
+                {t.viewCarePlans}
+              </BracketLink>
+            )}
           </div>
         </div>
 

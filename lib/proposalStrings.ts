@@ -64,7 +64,7 @@ export const PROPOSAL_STRINGS: Record<ProposalLanguage, ProposalStrings> = {
       { title: 'Launch', description: 'A final tightening pass, then the site goes live and transfers to you.' },
     ],
     afterLaunchDefault:
-      'Every build includes one month of the Essentials care plan, free, starting at handoff. Care keeps the site current, so your showcase never falls behind the work it exists to present.',
+      'Every build includes one month of care plan, free, starting at handoff. Care guarantees your maintanence, your site runs smoothly and your showcase never falls behind the work it exists to present.',
     acceptingTermsDefault:
       'If this works for you, reply and I will send the Statement of Work: the operating agreement with the full terms, scope detail, and schedule.\n\nYou sign it, the deposit invoice goes out, and we book the kickoff.',
   },
@@ -75,7 +75,7 @@ export const PROPOSAL_STRINGS: Record<ProposalLanguage, ProposalStrings> = {
     project: 'projeto',
     scopeLabel: 'escopo',
     sitemapButton: 'mapa do site',
-    howItRuns: 'como o trabalho funciona',
+    howItRuns: 'como funciona',
     afterLaunch: 'pós-lançamento',
     myWork: 'meus trabalhos',
     viewCarePlans: 'ver planos de manutenção',
@@ -109,7 +109,7 @@ export const PROPOSAL_STRINGS: Record<ProposalLanguage, ProposalStrings> = {
       { title: 'Lançamento', description: 'Um ajuste final, e então o site vai ao ar e é transferido para você.' },
     ],
     afterLaunchDefault:
-      'Todo projeto inclui um mês do plano de manutenção Essentials, gratuito, a partir da entrega. A manutenção mantém o site atualizado, para que a sua vitrine nunca fique atrás do trabalho que ela existe para apresentar.',
+      'Todo projeto inclui um mês do plano de cuidado, gratuito, a partir da entrega. O cuidado garante a manutenção do site, para que ele rode no 100%, sua vitrine nunca fica atrás do trabalho que ela existe para apresentar.',
     acceptingTermsDefault:
       'Se isso funcionar para você, responda que eu envio o Contrato de Serviço: o acordo com todos os termos, detalhes de escopo e cronograma.\n\nVocê assina, a fatura do sinal é enviada, e agendamos o kickoff.',
   },

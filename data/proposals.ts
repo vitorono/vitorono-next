@@ -29,6 +29,7 @@ export interface Proposal {
   scope?: string;
   process?: ProcessStep[];
   afterLaunchNote?: string;
+  carePlansUrl?: string;
   myWork?: ProposalWorkItem[];
   investmentValue?: string;
   investmentDescription: string;

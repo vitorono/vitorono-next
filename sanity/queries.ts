@@ -52,6 +52,7 @@ const PROPOSAL_QUERY = `*[_type == "proposal" && slug.current == $slug][0] {
   scope,
   process,
   afterLaunchNote,
+  carePlansUrl,
   "myWork": myWork[]->{ name, url },
   investmentValue,
   "investmentDescription": investment,
