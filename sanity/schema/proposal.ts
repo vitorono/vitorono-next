@@ -47,6 +47,21 @@ export const proposalSchema = defineType({
       validation: (r) => r.required(),
     }),
     defineField({
+      name: 'language',
+      title: 'Language',
+      description:
+        'Switches the template\'s labels and section titles. Content fields are unaffected — write them in whichever language you choose.',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'English', value: 'en' },
+          { title: 'Português (BR)', value: 'pt-BR' },
+        ],
+      },
+      initialValue: 'en',
+      validation: (r) => r.required(),
+    }),
+    defineField({
       name: 'clientCompany',
       title: 'Client Company',
       description: 'Shown as the big heading, next to "PROJECT PROPOSAL".',

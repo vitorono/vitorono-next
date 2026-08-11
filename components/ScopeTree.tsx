@@ -62,7 +62,7 @@ function buildTreeLines(items: SitemapItem[]): TreeLine[] {
   return lines;
 }
 
-export default function ScopeTree({ items }: { items: SitemapItem[] }) {
+export default function ScopeTree({ items, label }: { items: SitemapItem[]; label: string }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -74,7 +74,7 @@ export default function ScopeTree({ items }: { items: SitemapItem[] }) {
         onClick={() => setOpen((value) => !value)}
       >
         <FolderSharp className="proposal_tree-icon" aria-hidden="true" />
-        sitemap
+        {label}
       </button>
       {open && (
         <pre className="proposal_tree">

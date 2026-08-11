@@ -1,5 +1,7 @@
 // Shape of a proposal coming out of Sanity — public fields only, never `password`.
 
+export type ProposalLanguage = 'en' | 'pt-BR';
+
 export interface ProposalWorkItem {
   name: string;
   url?: string;
@@ -18,6 +20,7 @@ export interface SitemapItem {
 export interface Proposal {
   slug: string;
   projectName: string;
+  language?: ProposalLanguage;
   clientCompany?: string;
   clientName: string;
   date: string; // ISO date

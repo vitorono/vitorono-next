@@ -43,6 +43,7 @@ const PROPOSALS_LIST_QUERY = `*[_type == "proposal"] | order(date desc) {
 const PROPOSAL_QUERY = `*[_type == "proposal" && slug.current == $slug][0] {
   "slug": slug.current,
   projectName,
+  language,
   clientCompany,
   clientName,
   date,
